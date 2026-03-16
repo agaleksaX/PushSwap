@@ -1,68 +1,88 @@
 #include "libft.h"
 
-static int	count_word(const char *s, char c)
+static int	count_words(const char *str, char c)
 {
-	int	count;
 	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	while (s[i])
+	while (str[i])
 	{
-		while (s[i] && s[i] == c)
+		while (str[i] == c)
 			i++;
-		if (s[i] && s[i] != c)
-		{
+		if (str[i])
 			count++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
+		while (str[i] && str[i] != c)
+			i++;
 	}
 	return (count);
 }
 
-static char	**free_words(char **words, int j)
+static char	*dup_words(const char *str, int start, int end)
 {
-	while (j > 0)
-	{
-		j--;
-		free(words[j]);
-	}
-	free(words);
-	return (NULL);
+	int		i;
+	char	*word;
+
+	word = malloc(sizeof(char) * (end - start + 1));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (start < end)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+static void	free_split(char **arr, int j)
 {
-	char	**words;
+	while (j-- > 0)
+		free(arr[j]);
+	free(arr);
+}
+
+static int	fill_split(char **arr, const char *s, char c)
+{
 	int	i;
 	int	j;
 	int	start;
-	int	end;
 
 	i = 0;
 	j = 0;
-	if (!s)
-		return (NULL);
-	words = (char **)malloc((count_word(s, c) + 1) * sizeof(char *));
-	if (!words)
-		return (NULL);
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		if (s[i] && s[i] != c)
+		if (!s[i])
+			break ;
+		start = i;
+		while (s[i] && s[i] != c)
+			i++;
+		arr[j] = dup_words(s, start, i);
+		if (!arr[j])
 		{
-			start = i;
-			while (s[i] && s[i] != c)
-				i++;
-			end = i;
-			words[j] = ft_substr(s, start, end - start);
-			if (!words[j])
-				return free_words(words, j);
-			j++;
+			free_split(arr, j);
+			return (0);
 		}
+		j++;
 	}
-	words[j] = NULL;
-	return (words);
+	arr[j] = NULL;
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**arr;
+
+	if (!s)
+		return (NULL);
+	arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!arr)
+		return (NULL);
+	if (!fill_split(arr, s, c))
+	{
+		free(arr);
+		return (NULL);
+	}
+	return (arr);
 }

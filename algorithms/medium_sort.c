@@ -56,12 +56,6 @@ void	medium_sort(t_program *p)
 	chunk = (int)sqrt((double)size);
 	assign_index_from_stack(p->a);
 
-	if (size <= 5)
-	{
-		sort_5(p);
-		return ;
-	}
-	
 	i = 0;
 	while (i < size)
 	{
@@ -86,7 +80,7 @@ void	medium_sort(t_program *p)
 				max = tmp;
 			tmp = tmp->next;
 		}
-		while (p->a->index != max->index)
+		while (p->b->index != max->index)
 			ra(p);
 		pa(p);
 	}

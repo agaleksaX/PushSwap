@@ -6,16 +6,9 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:37:05 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 10:59:52 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:02:05 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// #include "push_swap.h"
-
-// void	complex_sort(t_program *p)
-// {
-// 	simple_sort(p);
-// }
 
 #include "push_swap.h"
 
@@ -98,11 +91,6 @@ void	complex_sort(t_program *p)
 	int		i;
 
 	size = stack_size(p->a);
-	if (size <= 5)
-	{
-		sort_5(p);
-		return ;
-	}
 	sorted = malloc(sizeof(int) * size);
 	if (!sorted)
 		return ;
