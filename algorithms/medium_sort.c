@@ -3,113 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssaghate <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:36:58 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 09:32:20 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/15 14:58:42 by ssaghate           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	medium_sort(t_program *p)
+void	assign_index_from_stack(t_node *stack)
 {
-	simple_sort(p);
+	t_node	*tmp;
+	t_node	*cur;
+	t_node	*min;
+	int		idx;
+	int		size;
+
+	size = stack_size(stack);
+	tmp = stack;
+	while (tmp)
+	{
+		tmp->index = -1;
+		tmp = tmp->next;
+	}
+	idx = 0;
+	while (idx < size)
+	{
+		min = NULL;
+		cur = stack;
+		while (cur)
+		{
+			if (cur->index == -1 && (!min || cur->value < min->value))
+				min = cur;
+			cur = cur->next;
+		}
+		if (min)
+			min->index = idx++;
+	}
 }
 
-// #include "push_swap.h"
+void	medium_sort(t_program *p)
+{
+	int		size;
+	int		chunk;
+	int		i;
+	int		j;
+	t_node	*tmp;
+	t_node	*max;
 
-// int	get_max_bits(t_node *stack)
-// {
-// 	int		max = 0;
-// 	int		bits = 0;
-// 	t_node	*tmp = stack;
+	size = stack_size(p->a);
+	chunk = (int)sqrt((double)size);
+	assign_index_from_stack(p->a);
 
-// 	while (tmp)
-// 	{
-// 		if (tmp->index > max)
-// 			max = tmp->index;
-// 		tmp = tmp->next;
-// 	}
-// 	while ((max >> bits) != 0)
-// 		bits++;
-// 	return (bits);
-// }
-
-// void	radix_sort(t_program *p)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	size;
-// 	int	max_bits;
-
-// 	size = stack_size(p->a);
-// 	max_bits = get_max_bits(p->a);
-// 	i = 0;
-// 	while (i < max_bits)
-// 	{
-// 		j = 0;
-// 		while (j < size)
-// 		{
-// 			if (((p->a->index >> i) & 1) == 1)
-// 				ra(p);
-// 			else
-// 				pb(p);
-// 			j++;
-// 		}
-// 		while (p->b)
-// 			pa(p);
-// 		i++;
-// 	}
-// }
-
-// int	cmp_int(const void *a, const void *b)
-// {
-// 	return (*(int *)a - *(int *)b);
-// }
-
-// void	assign_index(t_node *stack, int *sorted, int size)
-// {
-// 	t_node	*tmp;
-// 	int		i;
-
-// 	tmp = stack;
-// 	while (tmp)
-// 	{
-// 		i = 0;
-// 		while (i < size)
-// 		{
-// 			if (tmp->value == sorted[i])
-// 			{
-// 				tmp->index = i;
-// 				break ;
-// 			}
-// 			i++;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
-// void	complex_sort(t_program *p)
-// {
-// 	int		size;
-// 	int		*sorted;
-// 	t_node	*tmp;
-// 	int		i;
-
-// 	size = stack_size(p->a);
-// 	sorted = malloc(sizeof(int) * size);
-// 	if (!sorted)
-// 		return ;
-// 	tmp = p->a;
-// 	i = 0;
-// 	while (tmp)
-// 	{
-// 		sorted[i++] = tmp->value;
-// 		tmp = tmp->next;
-// 	}
-// 	qsort(sorted, size, sizeof(int), cmp_int);
-// 	assign_index(p->a, sorted, size);
-// 	radix_sort(p);
-// 	free(sorted);
-// }
+	if (size <= 5)
+	{
+		sort_5(p);
+		return ;
+	}
+	
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if (p->a->index >= i && p->a->index < i + chunk)
+				pb(p);
+			else
+				ra(p);
+			j++;
+		}
+		i += chunk;
+	}
+	while (p->b)
+	{
+		max = p->b;
+		tmp = p->b;
+		while (tmp)
+		{
+			if (tmp->index > max->index)
+				max = tmp;
+			tmp = tmp->next;
+		}
+		while (p->a->index != max->index)
+			ra(p);
+		pa(p);
+	}
+}

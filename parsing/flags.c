@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:37:03 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 10:31:57 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/16 10:56:12 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	parse_flags(int argc, char **argv, t_program *p)
 			else
 				error_exit(p);
 		}
-		else
-			p->flags.ADAPTIVE = 1;
 		i++;
 	}
 }

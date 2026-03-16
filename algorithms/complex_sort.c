@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:37:05 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 09:31:59 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/16 10:59:52 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,11 @@ void	complex_sort(t_program *p)
 	int		i;
 
 	size = stack_size(p->a);
+	if (size <= 5)
+	{
+		sort_5(p);
+		return ;
+	}
 	sorted = malloc(sizeof(int) * size);
 	if (!sorted)
 		return ;

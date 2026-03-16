@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:04:46 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 10:12:07 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/16 11:25:52 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	is_valid_number(char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i == '+'])
-			return(0);
+		if (str[i] == '+')
+			return (0);
 		i++;
 	}
 	if (!str[i])
@@ -34,7 +34,7 @@ int	is_valid_number(char *str)
 	return (1);
 }
 
-int	ft_atoi_safe(char *str, t_program *p)
+int	ft_atoi_safe(char *str, t_program *a)
 {
 	long	result;
 	int		singn;
@@ -53,7 +53,7 @@ int	ft_atoi_safe(char *str, t_program *p)
 	{
 		result = result * 10 + (str[i] - '0');
 		if ((result * singn) > INT_MAX || (result * singn) < INT_MIN)
-			error_exit(p);
+			error_exit(a);
 		i++;
 	}
 	return ((int)(result)*singn);
