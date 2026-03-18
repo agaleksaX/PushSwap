@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 12:25:18 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/14 22:19:13 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:30:08 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_print_hex_ul(unsigned long n)
 {
-	char			*digits;
-	int				count;
+	char	*digits;
+	int		count;
 
 	digits = "0123456789abcdef";
 	count = 0;
@@ -26,27 +26,28 @@ int	ft_print_hex_ul(unsigned long n)
 	return (count);
 }
 
-int ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
-    int len = 0;
+	int	len;
 
-    if (!s)
-        s = "(null)";
-    while (s[len])
-        write(2, &s[len++], 1);
-    return len;
+	len = 0;
+	if (!s)
+		s = "(null)";
+	while (s[len])
+		write(2, &s[len++], 1);
+	return (len);
 }
 
-int ft_print_ptr(void *ptr)
+int	ft_print_ptr(void *ptr)
 {
-    unsigned long   addres;
-    int             count;
-    
-    count = 0;
-    if (!ptr)
-        return (ft_putstr_fd("(nil)", 2), 5);
-    addres = (unsigned long)ptr;
-    count += ft_putstr("0x");
-    count += ft_print_hex_ul(addres);
-    return (count);
+	unsigned long	addres;
+	int				count;
+
+	count = 0;
+	if (!ptr)
+		return (ft_putstr_fd("(nil)", 2), 5);
+	addres = (unsigned long)ptr;
+	count += ft_putstr("0x");
+	count += ft_print_hex_ul(addres);
+	return (count);
 }

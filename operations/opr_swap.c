@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:04:25 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/13 20:44:01 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:50:36 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	sb(t_program *p)
 	if (!p->flags.bench)
 		write(1, "sb\n", 3);
 }
+
 void	ss(t_program *p)
 {
 	swap_nodes(&(p->a));

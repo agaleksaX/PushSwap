@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 18:05:32 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 10:19:27 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 19:18:00 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,52 @@ int	total_operations(t_program *p)
 		+ s->rra + s->rrb + s->rrr);
 }
 
+static void	get_strategy_adaptive(double disorder, char **strategy,
+		char **complexity)
+{
+	*strategy = "Adaptive";
+	if (disorder < 0.2)
+		*complexity = "O(n²)";
+	else if (disorder < 0.5)
+		*complexity = "O(n√n)";
+	else
+		*complexity = "O(n log n)";
+}
+
+void	get_strategy(t_program *p, double disorder, char **strategy,
+		char **complexity)
+{
+	if (p->flags.simple && !p->flags.medium && !p->flags.complex
+		&& !p->flags.adaptive)
+	{
+		*strategy = "Simple";
+		*complexity = "O(n²)";
+	}
+	else if (p->flags.medium && !p->flags.simple && !p->flags.complex
+		&& !p->flags.adaptive)
+	{
+		*strategy = "Medium";
+		*complexity = "O(n√n)";
+	}
+	else if (p->flags.complex && !p->flags.simple && !p->flags.medium
+		&& !p->flags.adaptive)
+	{
+		*strategy = "Complex";
+		*complexity = "O(n log n)";
+	}
+	else
+		get_strategy_adaptive(disorder, strategy, complexity);
+}
+
+static void	print_ops(t_stats *s)
+{
+	ft_printf("[bench] total_ops: %d\n", total_operations((t_program *)s));
+	ft_printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", s->sa, s->sb,
+		s->ss, s->pa, s->pb);
+	ft_printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n", s->ra,
+		s->rb, s->rr, s->rra, s->rrb, s->rrr);
+}
+
 void	print_bench(t_program *p, double disorder)
 {
 	t_stats	*s;
@@ -30,44 +76,11 @@ void	print_bench(t_program *p, double disorder)
 	int		frac;
 
 	s = &p->stats;
-	if (p->flags.SIMPLE == 1 && p->flags.MEDIUM == 0 && p->flags.COMPLEX == 0
-		&& p->flags.ADAPTIVE == 0)
-		{
-		strategy = "Simple";
-		complexity = "O(n²)";
-		}
-	else if (p->flags.MEDIUM == 1 && p->flags.SIMPLE == 0
-		&& p->flags.COMPLEX == 0 && p->flags.ADAPTIVE == 0)
-		{
-		strategy = "Medium";
-		complexity = "O(n√n)";
-		}
-	else if (p->flags.COMPLEX == 1 && p->flags.SIMPLE == 0
-		&& p->flags.MEDIUM == 0 && p->flags.ADAPTIVE == 0)
-		{
-		strategy = "Complex";
-		complexity = "O(n log n)";
-		}
-	else
-	{
-		strategy = "Adaptive";	
-			if (disorder < 0.2)
-				complexity = "O(n²)";
-			else if (disorder < 0.5)
-				complexity = "O(n√n)";
-			else
-				complexity = "O(n log n)";
-	}
+	get_strategy(p, disorder, &strategy, &complexity);
 	disorder *= 100;
 	whole = (int)disorder;
 	frac = (int)((disorder - whole) * 100);
-		
-
 	ft_printf("[bench] disorder: %d.%d%%\n", whole, frac);
 	ft_printf("[bench] strategy: %s / %s\n", strategy, complexity);
-	ft_printf("[bench] total_ops: %d\n", total_operations(p));
-	ft_printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", s->sa, s->sb,
-		s->ss, s->pa, s->pb);
-	ft_printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n", s->ra,
-		s->rb, s->rr, s->rra, s->rrb, s->rrr);
+	print_ops(s);
 }

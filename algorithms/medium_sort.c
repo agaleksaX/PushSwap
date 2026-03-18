@@ -3,7 +3,8 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssaghate <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssaghate <marvin@student.42.fr>              +#+  +:+
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:36:58 by agaleksa          #+#    #+#             */
 /*   Updated: 2026/03/15 14:58:42 by ssaghate           ###   ########.fr       */
@@ -61,7 +62,7 @@ void	assign_index_from_stack(t_node *stack)
 // 		sort_5(p);
 // 		return ;
 // 	}
-	
+
 // 	i = 0;
 // 	while (i < size)
 // 	{
@@ -103,31 +104,29 @@ void	medium_sort(t_program *p)
 	size = stack_size(p->a);
 	chunk = (int)sqrt((double)size);
 	assign_index_from_stack(p->a);
-
 	if (size <= 5)
 	{
 		sort_5(p);
 		return ;
 	}
-
 	i = 0;
 	while (i < size)
 	{
 		while (p->a)
 		{
-    		if (p->a->index <= i)
+			if (p->a->index <= i)
 			{
-   		    	pb(p);
-        		rb(p);
-       		 i++;
-   			}
-    		else if (p->a->index <= i + chunk)
-    		{
-        		pb(p);
-        		i++;
-    		}
-    		else
-        		ra(p);
+				pb(p);
+				rb(p);
+				i++;
+			}
+			else if (p->a->index <= i + chunk)
+			{
+				pb(p);
+				i++;
+			}
+			else
+				ra(p);
 		}
 		i += chunk;
 	}

@@ -6,15 +6,15 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:23:19 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/02/15 20:25:17 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:30:23 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdarg.h>
 # include "libft/libft.h"
+# include <stdarg.h>
 
 int	ft_printf(const char *format, ...);
 int	ft_printchar(char c);

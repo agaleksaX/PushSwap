@@ -6,21 +6,21 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 12:12:09 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 10:44:07 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:43:10 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "ft_printf/ft_printf.h"
+# include "ft_printf/libft/libft.h"
 # include <limits.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <string.h>
-#include <math.h>
 # include <unistd.h>
-# include "ft_printf/ft_printf.h"
-# include "ft_printf/libft/libft.h"
 
 typedef struct s_node
 {
@@ -44,32 +44,23 @@ typedef struct s_stats
 	int				rrr;
 }					t_stats;
 
-// typedef enum e_algo
-// {
-// 	SIMPLE,
-// 	MEDIUM,
-// 	COMPLEX,
-// 	ADAPTIVE
-// }	t_algo;
-
 typedef struct s_flags
 {
-	// t_algo			algo;
 	int				bench;
-	int				SIMPLE;
-	int				MEDIUM;
-	int				COMPLEX;
-	int				ADAPTIVE;
+	int				simple;
+	int				medium;
+	int				complex;
+	int				adaptive;
 	int				start;
-}	t_flags;
+}					t_flags;
 
 typedef struct s_program
 {
-	t_node	*a;
-	t_node	*b;
-	t_stats	stats;
-	t_flags	flags;
-}	t_program;
+	t_node			*a;
+	t_node			*b;
+	t_stats			stats;
+	t_flags			flags;
+}					t_program;
 
 /* ===================== FLAGS ===================== */
 
@@ -78,7 +69,8 @@ void				parse_flags(int argc, char **argv, t_program *p);
 
 /* ===================== PARSING ===================== */
 
-int					parse_arguments(int argc, char **argv, t_program *p, int start);
+int					parse_arguments(int argc, char **argv, t_program *p,
+						int start);
 int					is_valid_number(char *str);
 int					has_duplicates(t_node *a);
 

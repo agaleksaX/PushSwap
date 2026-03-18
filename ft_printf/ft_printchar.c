@@ -6,14 +6,14 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 11:59:54 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/14 22:19:40 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:30:16 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printchar(char c)
+int	ft_printchar(char c)
 {
-    ft_putchar_fd(c, 2);
-    return (1);
+	ft_putchar_fd(c, 2);
+	return (1);
 }

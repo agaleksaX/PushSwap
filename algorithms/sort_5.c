@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 23:51:28 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/14 22:33:17 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:34:23 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	sort_5(t_program *p)
 	int	size;
 
 	size = stack_size(p->a);
-
 	if (size == 2)
 		sort_2(p);
 	else if (size == 3)

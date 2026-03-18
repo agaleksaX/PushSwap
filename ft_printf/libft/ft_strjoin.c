@@ -1,32 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/18 18:25:39 by agaleksa          #+#    #+#             */
+/*   Updated: 2026/03/18 18:25:40 by agaleksa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static int	count_words(const char *str, char c)
 {
-	char	*s;
-	size_t	j;
-	size_t	i;
-	size_t	s1_len;
-	size_t	s2_len;
+	int	i;
+	int	count;
 
-	if (s1 == NULL || s2 == NULL)
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		while (str[i] == c)
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && str[i] != c)
+			i++;
+	}
+	return (count);
+}
+
+static char	*dup_words(const char *str, int start, int end)
+{
+	int		i;
+	char	*word;
+
+	word = malloc(sizeof(char) * (end - start + 1));
+	if (!word)
 		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	s = malloc(s1_len + s2_len + 1);
-	if (!s)
-		return(NULL);
+	i = 0;
+	while (start < end)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
+}
+
+static void	free_split(char **arr, int j)
+{
+	while (j-- > 0)
+		free(arr[j]);
+	free(arr);
+}
+
+static int	fill_split(char **arr, const char *s, char c)
+{
+	int	i;
+	int	j;
+	int	start;
+
 	i = 0;
 	j = 0;
-	while(s1[i])
+	while (s[i])
 	{
-		s[i] = s1[i];
-		i++;
-	}
-	while(s2[j])
-	{
-		s[i + j] = s2[j];
+		while (s[i] && s[i] == c)
+			i++;
+		if (!s[i])
+			break ;
+		start = i;
+		while (s[i] && s[i] != c)
+			i++;
+		arr[j] = dup_words(s, start, i);
+		if (!arr[j])
+		{
+			free_split(arr, j);
+			return (0);
+		}
 		j++;
 	}
-	s[i + j] = '\0';
-	return(s);
+	arr[j] = NULL;
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**arr;
+
+	if (!s)
+		return (NULL);
+	arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!arr)
+		return (NULL);
+	if (!fill_split(arr, s, c))
+	{
+		free(arr);
+		return (NULL);
+	}
+	return (arr);
 }

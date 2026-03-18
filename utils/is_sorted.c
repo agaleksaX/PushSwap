@@ -6,19 +6,19 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 17:08:50 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/08 17:15:53 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:35:24 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_sorted(t_node *a)
+int	is_sorted(t_node *a)
 {
-    while (a && a->next)
-    {
-        if(a->value > a->next->value)
-            return (0);
-        a = a->next;          
-    }
-    return(1);
+	while (a && a->next)
+	{
+		if (a->value > a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }

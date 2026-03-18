@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:37:03 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 10:56:12 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:56:40 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,59 +27,48 @@ int	is_flag(char *arg)
 	return (0);
 }
 
+static int	no_algo_selected(t_program *p)
+{
+	return (!p->flags.simple && !p->flags.medium && !p->flags.complex
+		&& !p->flags.adaptive);
+}
+
+static void	handle_flag(char *arg, t_program *p)
+{
+	if (!ft_strcmp(arg, "--bench"))
+	{
+		if (!p->flags.bench)
+			p->flags.bench = 1;
+		else
+			error_exit(p);
+	}
+	else if (!ft_strcmp(arg, "--simple") && no_algo_selected(p))
+		p->flags.simple = 1;
+	else if (!ft_strcmp(arg, "--medium") && no_algo_selected(p))
+		p->flags.medium = 1;
+	else if (!ft_strcmp(arg, "--complex") && no_algo_selected(p))
+		p->flags.complex = 1;
+	else if (!ft_strcmp(arg, "--adaptive") && no_algo_selected(p))
+		p->flags.adaptive = 1;
+	else if (is_flag(arg))
+		error_exit(p);
+}
+
 void	parse_flags(int argc, char **argv, t_program *p)
 {
-	int i;
+	int	i;
 
 	p->flags.bench = 0;
-    p->flags.SIMPLE = 0;
-    p->flags.MEDIUM = 0;
-    p->flags.COMPLEX = 0;
-    p->flags.ADAPTIVE = 0;
+	p->flags.simple = 0;
+	p->flags.medium = 0;
+	p->flags.complex = 0;
+	p->flags.adaptive = 0;
 	p->flags.start = 1;
-
 	i = 1;
 	while (i < argc)
 	{
-		if (!ft_strcmp(argv[i], "--bench"))
-		{
-			if (p->flags.bench == 0)
-				p->flags.bench = 1;
-			else
-				error_exit(p);
-		}
-		else if (!ft_strcmp(argv[i], "--simple"))
-		{
-			if (p->flags.SIMPLE == 0 && p->flags.MEDIUM == 0 && p->flags.COMPLEX == 0
-				&& p->flags.ADAPTIVE == 0)
-				p->flags.SIMPLE = 1;
-			else 
-				error_exit (p);
-		}
-		else if (!ft_strcmp(argv[i], "--medium"))
-		{
-			if (p->flags.SIMPLE == 0 && p->flags.MEDIUM == 0 && p->flags.COMPLEX == 0
-				&& p->flags.ADAPTIVE == 0)
-				p->flags.MEDIUM = 1;
-			else
-				error_exit(p);
-		}
-		else if (!ft_strcmp(argv[i], "--complex"))
-		{
-			if (p->flags.SIMPLE == 0 && p->flags.MEDIUM == 0 && p->flags.COMPLEX == 0
-				&& p->flags.ADAPTIVE == 0)
-				p->flags.COMPLEX = 1;
-			else
-				error_exit(p);
-		}
-		else if (!ft_strcmp(argv[i], "--adaptive"))
-		{
-			if (p->flags.SIMPLE == 0 && p->flags.MEDIUM == 0 && p->flags.COMPLEX == 0
-				&& p->flags.ADAPTIVE == 0)
-				p->flags.ADAPTIVE = 1;
-			else
-				error_exit(p);
-		}
+		if (is_flag(argv[i]))
+			handle_flag(argv[i], p);
 		i++;
 	}
 }

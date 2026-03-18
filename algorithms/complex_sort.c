@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:37:05 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/16 20:29:02 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:33:59 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	get_max_bits(t_node *stack)
 {
-	int		max = 0;
-	int		bits = 0;
-	t_node	*tmp = stack;
+	int		max;
+	int		bits;
+	t_node	*tmp;
 
+	max = 0;
+	bits = 0;
+	tmp = stack;
 	while (tmp)
 	{
 		if (tmp->index > max)
