@@ -29,6 +29,9 @@ utils/index_stack.c \
 utils/is_sorted.c \
 utils/rotate_to_top.c
 
+# get_next_line/get_next_line.c \
+# get_next_line/get_next_line_utils.c \
+
 OBJ = $(SRC:.c=.o)
 
 PRINTF = ft_printf/libftprintf.a
@@ -51,6 +54,9 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make -C ft_printf fclean
+
+bonus:
+
 
 re: fclean all
 

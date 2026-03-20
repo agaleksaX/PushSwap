@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 12:12:09 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/19 17:38:54 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/20 20:45:31 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ft_printf/ft_printf.h"
 # include "ft_printf/libft/libft.h"
+# include "get_next_line/get_next_line.h"
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
