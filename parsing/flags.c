@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:37:03 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/20 20:31:33 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 00:03:27 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,6 @@ void	parse_flags(int argc, char **argv, t_program *p)
 	{
 		if (is_flag(argv[i]))
 			handle_flag(argv[i], p);
-		else
-		{
-			p->flags.start = i;
-			break ;
-		}
 		i++;
 	}
 }

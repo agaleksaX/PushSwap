@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:24:02 by ssaghate          #+#    #+#             */
-/*   Updated: 2026/03/19 17:20:14 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 00:06:50 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	parse_arguments(int argc, char **argv, t_program *p, int start)
 	i = start;
 	while (i < argc)
 	{
+		if (is_flag(argv[i]))
+		{
+			i++;
+			continue;
+		}
 		nums = ft_split(argv[i], ' ');
 		if (!nums)
 			error_exit(p);
