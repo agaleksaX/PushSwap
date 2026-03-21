@@ -5,12 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/01 12:12:09 by agaleksa          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2026/03/21 13:33:34 by agaleksa         ###   ########.fr       */
-=======
-/*   Updated: 2026/03/19 20:03:29 by ssaghate         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Created: 2026/03/21 16:38:27 by agaleksa          #+#    #+#             */
+/*   Updated: 2026/03/21 16:38:37 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +66,7 @@ typedef struct s_program
 
 int					is_flag(char *arg);
 void				parse_flags(int argc, char **argv, t_program *p);
-<<<<<<< Updated upstream
 void				parse_arguments(int argc, char **argv, t_program *p,
-=======
-void					parse_arguments(int argc, char **argv, t_program *p,
->>>>>>> Stashed changes
 						int start);
 int					is_valid_number(char *str, t_program *p);
 int					has_duplicates(t_node *a);
