@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:37:03 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/21 13:22:44 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 13:40:13 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	no_algo_selected(t_program *p)
 void	handle_flag(char *arg, t_program *p)
 {
 	if (!ft_strcmp(arg, "--bench"))
-		p->flags.bench = 1;
+		p->flags.bench_mode = 1;
 	else if (!ft_strcmp(arg, "--simple") && no_algo_selected(p))
 		p->flags.simple = 1;
 	else if (!ft_strcmp(arg, "--medium") && no_algo_selected(p))
@@ -53,7 +53,7 @@ void	parse_flags(int argc, char **argv, t_program *p)
 {
 	int	i;
 
-	p->flags.bench = 0;
+	p->flags.bench_mode = 0;
 	p->flags.simple = 0;
 	p->flags.medium = 0;
 	p->flags.complex = 0;

@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 12:12:09 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/21 13:23:02 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 13:33:34 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef struct s_stats
 
 typedef struct s_flags
 {
-	int				bench;
+	int				bench_mode;
+	int				checker_mode;
 	int				simple;
 	int				medium;
 	int				complex;

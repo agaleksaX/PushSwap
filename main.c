@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:45:09 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/21 13:21:14 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 13:39:48 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	handle_sorted(t_program *p)
 {
 	if (is_sorted(p->a))
 	{
-		if (!p->flags.bench)
+		if (!p->flags.bench_mode)
 			free_stack(&p->a);
 		else
 			print_bench(p, 0);
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	if (handle_sorted(&p))
 		return (0);
 	choose_sort(&p, disorder);
-	if (p.flags.bench)
+	if (p.flags.bench_mode)
 		print_bench(&p, disorder);
 	free_stack(&p.a);
 	return (0);

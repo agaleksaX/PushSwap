@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   adaptive_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssaghate <ssaghate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:24:47 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/19 16:08:29 by ssaghate         ###   ########.fr       */
+/*   Updated: 2026/03/21 14:01:46 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	adaptive_sort(t_program *p, double disorder)
+void adaptive_sort(t_program *p, double disorder)
 {
-	int	size;
-
-	size = stack_size(p->a);
-	(void)disorder;
-	if (size <= 5)
-		simple_sort(p);
-	else
-		medium_sort(p);
+    if (disorder < 0.1)
+        simple_sort(p);
+    else if (disorder < 0.3)
+        medium_sort(p);
+    else
+        complex_sort(p);
 }

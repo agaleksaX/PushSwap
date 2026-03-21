@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:24:02 by ssaghate          #+#    #+#             */
-/*   Updated: 2026/03/21 13:19:18 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 14:44:12 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 void	error_exit(t_program *p)
 {
 	if (p)
-		free_stack(&p->a);
+	{
+		if (p->a)
+			free_stack(&p->a);
+		if (p->b)
+			free_stack(&p->b);
+	}
 	write(2, "Error\n", 6);
 	exit(1);
 }
