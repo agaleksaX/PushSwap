@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssaghate <ssaghate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:11:12 by ssaghate          #+#    #+#             */
-/*   Updated: 2026/03/21 16:50:44 by ssaghate         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:20:31 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ static void	process_argument(char *arg, t_program *p)
 	while (nums[j])
 	{
 		if (is_flag(nums[j]))
+		{
 			handle_flag(nums[j], p);
+			j++;
+			continue;
+		}
 		else
 			process_number(nums[j], p);
 		j++;
@@ -73,7 +77,10 @@ void	parse_arguments(int argc, char **argv, t_program *p, int start)
 	while (i < argc)
 	{
 		if (is_flag(argv[i]))
-			handle_flag(argv[i], p);
+		{	
+			i++;
+			continue;
+		}
 		else
 			process_argument(argv[i], p);
 		i++;
