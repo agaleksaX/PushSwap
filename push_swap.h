@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 12:12:09 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/21 12:28:46 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 13:23:02 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ void				complex_sort(t_program *p);
 void				adaptive_sort(t_program *p, double disorder);
 void				error_exit(t_program *p);
 t_node				*find_max(t_node *b);
+
+void				handle_flag(char *arg, t_program *p);
 
 #endif

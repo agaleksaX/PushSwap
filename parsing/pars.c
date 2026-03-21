@@ -6,7 +6,7 @@
 /*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:24:02 by ssaghate          #+#    #+#             */
-/*   Updated: 2026/03/21 00:06:50 by agaleksa         ###   ########.fr       */
+/*   Updated: 2026/03/21 13:19:18 by agaleksa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ void	parse_arguments(int argc, char **argv, t_program *p, int start)
 		j = 0;
 		while (nums[j])
 		{
+			if (is_flag(nums[j]))
+			{
+				handle_flag(nums[j], p);
+				j++;
+				continue;
+			}
 			if (!is_valid_number(nums[j], p))
 				error_exit(p);
 			value = ft_atoi_safe(nums[j], p);
