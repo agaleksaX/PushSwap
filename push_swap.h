@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssaghate <ssaghate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/01 12:12:09 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/22 16:14:39 by agaleksa         ###   ########.fr       */
+/*   Created: 2026/03/23 18:15:48 by ssaghate          #+#    #+#             */
+/*   Updated: 2026/03/23 18:29:39 by ssaghate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "bonus/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 # include "ft_printf/libft/libft.h"
-# include "bonus/get_next_line.h"
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
@@ -74,7 +74,7 @@ void				free_split(char **arr);
 int					is_sorted(t_node *a);
 void				index_stack(t_node *a);
 t_node				*find_min(t_node *stack);
-void				print_bench(t_program *p, double disorder);
+t_node				*find_max(t_node *stack);
 int					get_position(t_node *stack, int value);
 void				rotate_to_top(t_program *p, int pos);
 int					total_operations(t_program *p);
@@ -90,14 +90,11 @@ void				rev_rotate_nodes(t_node **stack);
 void				sa(t_program *p);
 void				sb(t_program *p);
 void				ss(t_program *p);
-
 void				pa(t_program *p);
 void				pb(t_program *p);
-
 void				ra(t_program *p);
 void				rb(t_program *p);
 void				rr(t_program *p);
-
 void				rra(t_program *p);
 void				rrb(t_program *p);
 void				rrr(t_program *p);
@@ -105,13 +102,15 @@ double				compute_disorder(t_node *a);
 void				simple_sort(t_program *p);
 void				sort_2(t_program *p);
 void				sort_3(t_program *p);
+void				sort_4(t_program *p);
 void				sort_5(t_program *p);
 void				medium_sort(t_program *p);
 void				complex_sort(t_program *p);
 void				adaptive_sort(t_program *p, double disorder);
+void				prepare_index(t_program *p, int *bits);
+void				radix_pass(t_program *p, int size, int bit);
 void				error_exit(t_program *p);
-t_node				*find_max(t_node *b);
-
+void				print_bench(t_program *p, double disorder);
 void				handle_flag(char *arg, t_program *p);
 
 #endif

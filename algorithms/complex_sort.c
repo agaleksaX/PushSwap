@@ -3,95 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaleksa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ssaghate <ssaghate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/14 22:37:05 by agaleksa          #+#    #+#             */
-/*   Updated: 2026/03/18 18:33:59 by agaleksa         ###   ########.fr       */
+/*   Created: 2026/03/23 18:12:42 by ssaghate          #+#    #+#             */
+/*   Updated: 2026/03/23 18:26:28 by ssaghate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max_bits(t_node *stack)
-{
-	int		max;
-	int		bits;
-	t_node	*tmp;
-
-	max = 0;
-	bits = 0;
-	tmp = stack;
-	while (tmp)
-	{
-		if (tmp->index > max)
-			max = tmp->index;
-		tmp = tmp->next;
-	}
-	while ((max >> bits) != 0)
-		bits++;
-	return (bits);
-}
-
-void	radix_sort(t_program *p)
-{
-	int	i;
-	int	j;
-	int	size;
-	int	max_bits;
-
-	size = stack_size(p->a);
-	max_bits = get_max_bits(p->a);
-	i = 0;
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (((p->a->index >> i) & 1) == 1)
-				ra(p);
-			else
-				pb(p);
-			j++;
-		}
-		while (p->b)
-			pa(p);
-		i++;
-	}
-}
-
-int	cmp_int(const void *a, const void *b)
-{
-	return (*(int *)a - *(int *)b);
-}
-
-void	assign_index(t_node *stack, int *sorted, int size)
-{
-	t_node	*tmp;
-	int		i;
-
-	tmp = stack;
-	while (tmp)
-	{
-		i = 0;
-		while (i < size)
-		{
-			if (tmp->value == sorted[i])
-			{
-				tmp->index = i;
-				break ;
-			}
-			i++;
-		}
-		tmp = tmp->next;
-	}
-}
-
 void	complex_sort(t_program *p)
 {
-	int		size;
-	int		*sorted;
-	t_node	*tmp;
-	int		i;
+	int	size;
+	int	bits;
+	int	i;
 
 	size = stack_size(p->a);
 	if (size <= 5)
@@ -99,18 +24,11 @@ void	complex_sort(t_program *p)
 		sort_5(p);
 		return ;
 	}
-	sorted = malloc(sizeof(int) * size);
-	if (!sorted)
-		error_exit(p);
-	tmp = p->a;
+	prepare_index(p, &bits);
 	i = 0;
-	while (tmp)
+	while (i < bits)
 	{
-		sorted[i++] = tmp->value;
-		tmp = tmp->next;
+		radix_pass(p, size, i);
+		i++;
 	}
-	qsort(sorted, size, sizeof(int), cmp_int);
-	assign_index(p->a, sorted, size);
-	radix_sort(p);
-	free(sorted);
 }

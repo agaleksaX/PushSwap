@@ -1,5 +1,4 @@
 NAME = push_swap
-
 BONUS = checker
 
 CC = cc
@@ -9,6 +8,7 @@ SRC = main.c \
 algorithms/find_max.c \
 algorithms/adaptive_sort.c \
 algorithms/complex_sort.c \
+algorithms/complex_utils.c \
 algorithms/medium_sort.c \
 algorithms/simple_sort.c \
 algorithms/sort_2.c \
@@ -29,7 +29,7 @@ utils/find_min.c \
 utils/get_position.c \
 utils/index_stack.c \
 utils/is_sorted.c \
-utils/rotate_to_top.c \
+utils/rotate_to_top.c
 
 BONUS_SRC = bonus/checker.c \
 bonus/get_next_line.c \
@@ -37,6 +37,7 @@ bonus/get_next_line_utils.c \
 algorithms/find_max.c \
 algorithms/adaptive_sort.c \
 algorithms/complex_sort.c \
+algorithms/complex_utils.c \
 algorithms/medium_sort.c \
 algorithms/simple_sort.c \
 algorithms/sort_2.c \
@@ -57,10 +58,9 @@ utils/find_min.c \
 utils/get_position.c \
 utils/index_stack.c \
 utils/is_sorted.c \
-utils/rotate_to_top.c 
+utils/rotate_to_top.c
 
 OBJ = $(SRC:.c=.o)
-
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 PRINTF = ft_printf/libftprintf.a
@@ -84,12 +84,14 @@ fclean: clean
 	rm -f $(NAME)
 	make -C ft_printf fclean
 
+re: fclean all
+
 bonus: $(BONUS)
 
 $(BONUS): $(BONUS_OBJ) $(PRINTF)
-	$(CC) $(CFLAGS) $(BONUS_OBJ) $(PRINTF) -o checker
+	$(CC) $(CFLAGS) $(BONUS_OBJ) $(PRINTF) -o $(BONUS)
 
-bonus_clean: 
+bonus_clean:
 	rm -f $(BONUS_OBJ)
 
 bonus_fclean: bonus_clean
@@ -97,7 +99,4 @@ bonus_fclean: bonus_clean
 
 bonus_re: bonus_fclean bonus_clean bonus
 
-
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus bonus_clean bonus_fclean bonus_re

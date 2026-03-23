@@ -6,7 +6,7 @@
 /*   By: ssaghate <ssaghate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 12:09:51 by ssaghate          #+#    #+#             */
-/*   Updated: 2026/03/19 15:24:56 by ssaghate         ###   ########.fr       */
+/*   Updated: 2026/03/23 16:02:20 by ssaghate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int	get_chunk_size(int size)
 {
 	if (size <= 100)
-		return (15);
-	return (30);
+		return (11);
+	return (23);
 }
 
 static void	move_max_to_top(t_program *p, t_node *max)
