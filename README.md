@@ -85,7 +85,7 @@ bash test_push_swap.sh ./push_swap
 
 This project implements four sorting strategies.
 
-### Simple sort — O(n²)
+### Simple sort — O(n²) - selection
 
 Used for very small inputs (≤ 5 elements via `sort_2`, `sort_3`, `sort_5`).
 
